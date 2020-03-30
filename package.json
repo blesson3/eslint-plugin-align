@@ -1,0 +1,36 @@
+{
+  "name": "eslint-plugin-align",
+  "version": "0.0.1",
+  "description": "ESLint plugin for aligning",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "author": "Matt Blessed",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "         mocha tests --recursive",
+    "compile": "      rimraf -rf lib && tsc -p .",
+    "compile:watch": "tsc -w -p ."
+  },
+  "dependencies": {
+    "@types/node": " ^13.9.5",
+    "requireindex": "~1.1.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "       ^2.25.0",
+    "eslint": "                          ^6.8.0",
+    "eslint-config-airbnb-base": "       ^14.1.0",
+    "eslint-plugin-import": "            ^2.20.1",
+    "eslint-plugin-jest": "              ^23.8.2",
+    "mocha": "                           ^3.1.2",
+    "rimraf": "                          ^3.0.2",
+    "typescript": "                      ^3.8.3"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "license": "ISC"
+}

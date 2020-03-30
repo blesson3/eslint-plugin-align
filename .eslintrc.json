@@ -1,0 +1,33 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "ignorePatterns": ["lib"],
+  "extends": [
+    "airbnb-base",
+    "plugin:jest/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
+  ],
+  "rules": {
+    "max-len": [1, 80, 2, { "ignoreComments": true }],
+    "import/no-dynamic-require": 1,
+    "function-paren-newline": 0,
+    "no-param-reassign": 0,
+    "prefer-destructuring": 0,
+    "brace-style": 0,
+    "no-underscore-dangle": 0,
+    "no-unused-vars": 1,
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-multi-spaces": 0,
+    "key-spacing": ["error", { 
+      "multiLine": { "align": "colon", "afterColon": true }
+    }],
+    "import/extensions": 0,
+    "@typescript-eslint/type-annotation-spacing": 0
+  }
+}
