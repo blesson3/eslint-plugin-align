@@ -47,7 +47,8 @@ export default function verifyAlignment({ sourceCode, context }: { sourceCode: a
 {
   const sourceLines = sourceCode.getText().split('\n');
   // TODO: handle multiple lines
-  const [sourceLine] = sourceLines.slice(node.loc.start.line - 1, node.loc.end.line);
+  let [sourceLine] = sourceLines.slice(node.loc.start.line - 1, node.loc.end.line);
+  sourceLine = sourceLine.trim();
   const lineGroup    = getLineGroup({ sourceCode }, { targetLineIdx: node.loc.start.line - 1, lineMatch });
 
   if (!lineGroup || lineGroup.length === 0) {
@@ -68,7 +69,7 @@ export default function verifyAlignment({ sourceCode, context }: { sourceCode: a
   const linesLeftSide          = linesComps.map((x) => x.left);
   const highestLengthPreAnchor = linesLeftSide.map((x) => x.length).sort((n1, n2) => n2 - n1)[0];
 
-  const targetLineGroupIdx = linesComps.map((x) => x.line).indexOf(sourceLine.trim());
+  const targetLineGroupIdx = linesComps.map((x) => x.line).indexOf(sourceLine);
   const targetLineCompObj  = linesComps[targetLineGroupIdx];
   const spaceNum           = highestLengthPreAnchor - targetLineCompObj.left.length + 1;
   const targetLineSpacing  = `${targetLineCompObj.left}${SPACE.repeat(spaceNum)}${targetLineCompObj.right}`;
