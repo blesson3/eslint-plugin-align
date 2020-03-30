@@ -14,6 +14,12 @@ const requireIndex = require('requireindex');
 // Plugin Definition
 //------------------------------------------------------------------------------
 
+const rules = requireIndex(`${__dirname}/rules`);
+
+// resolve from 'default'
+Object.keys(rules).forEach((key) => {
+  rules[key] = rules[key].default;
+});
 
 // import all rules in lib/rules
-module.exports.rules = requireIndex(`${__dirname}/rules`);
+module.exports.rules = rules;
