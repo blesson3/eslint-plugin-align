@@ -11,7 +11,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "         mocha tests --recursive",
-    "compile": "      rimraf -rf lib && tsc -p .",
+    "compile": "      rm -rf lib && tsc -p .",
     "compile:watch": "tsc -w -p .",
     "preinstall": "   npm run compile"
   },
