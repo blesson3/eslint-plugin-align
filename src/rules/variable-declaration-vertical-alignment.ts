@@ -14,7 +14,7 @@ const REGEX_VARIABLE_DECLARATION = /^((?:const|let|var).*?)\s(=\s+.*)$/;
 // Rule Definition
 //------------------------------------------------------------------------------
 
-export default {
+module.exports = {
   meta: {
     type    : 'layout',
     fixable : 'whitespace',

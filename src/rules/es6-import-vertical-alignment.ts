@@ -13,7 +13,7 @@ const REGEX_ES6_IMPORT_LINE = /^(import\s+.*?)(from.*$)/;
 // Rule Definition
 //------------------------------------------------------------------------------
 
-export default {
+module.exports = {
   meta: {
     type    : 'layout',
     fixable : 'whitespace',

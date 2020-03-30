@@ -14,7 +14,7 @@ const REGEX_ASSIGNMENT = /^((?!let|const|var).*?)\s+(=\s+.*)$/;
 // Rule Definition
 //------------------------------------------------------------------------------
 
-export default {
+module.exports = {
   meta: {
     type    : 'layout',
     fixable : 'whitespace',
