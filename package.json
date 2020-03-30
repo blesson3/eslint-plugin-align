@@ -12,7 +12,8 @@
   "scripts": {
     "test": "         mocha tests --recursive",
     "compile": "      rimraf -rf lib && tsc -p .",
-    "compile:watch": "tsc -w -p ."
+    "compile:watch": "tsc -w -p .",
+    "preinstall": "   npm run compile"
   },
   "dependencies": {
     "@types/node": " ^13.9.5",
