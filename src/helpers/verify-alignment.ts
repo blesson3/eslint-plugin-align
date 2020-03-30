@@ -56,19 +56,19 @@ export default function verifyAlignment({ sourceCode, context }: { sourceCode: a
     return;
   }
 
-  const lineMatches = lineGroup.map((obj) => obj.line.match(lineMatch));
+  const lineMatches = lineGroup.map((obj) => obj.line.trim().match(lineMatch));
   const linesComps = lineMatches.map((x) => x || '')
     .map((x) => ({
       left : x[1].trim(),
       right: x[2].trim(),
       line : x[0],
-      idx  : lineGroup.find((data: LineData) => data.line === x[0])?.idx,
+      idx  : lineGroup.find((data: LineData) => data.line.trim() === x[0])?.idx,
     }));
 
   const linesLeftSide          = linesComps.map((x) => x.left);
   const highestLengthPreAnchor = linesLeftSide.map((x) => x.length).sort((n1, n2) => n2 - n1)[0];
 
-  const targetLineGroupIdx = linesComps.map((x) => x.line).indexOf(sourceLine);
+  const targetLineGroupIdx = linesComps.map((x) => x.line).indexOf(sourceLine.trim());
   const targetLineCompObj  = linesComps[targetLineGroupIdx];
   const spaceNum           = highestLengthPreAnchor - targetLineCompObj.left.length + 1;
   const targetLineSpacing  = `${targetLineCompObj.left}${SPACE.repeat(spaceNum)}${targetLineCompObj.right}`;
