@@ -74,6 +74,7 @@ export default function verifyAlignment({ sourceCode, context }: { sourceCode: a
   const spaceNum           = highestLengthPreAnchor - targetLineCompObj.left.length + 1;
   const targetLineSpacing  = `${targetLineCompObj.left}${SPACE.repeat(spaceNum)}${targetLineCompObj.right}`;
 
+  // console.log(`Idx:    ${targetLineCompObj.idx}`);
   // console.log(`Line:   ${sourceLine}`);
   // console.log(`Target: ${targetLineSpacing}`);
   // console.log('\n\n');
@@ -87,15 +88,15 @@ export default function verifyAlignment({ sourceCode, context }: { sourceCode: a
         line: sourceLine,
       },
       fix(fixer: any) {
-        // get the source code substring relevant to the group
-        const groupSourceLineStart  = lineGroup[0].idx;
-        const groupSourceLineEnd    = lineGroup[lineGroup.length - 1].idx + 1;
-        const groupSourceRangeStart = sourceLines.slice(0, groupSourceLineStart)
+        // get the source code substring relevant to the target line
+        const sourceLineStart  = targetLineCompObj.idx;
+        const sourceLineEnd    = targetLineCompObj.idx + 1;
+        const sourceRangeStart = sourceLines.slice(0, sourceLineStart)
           .reduce((pv: number, cv: string) => pv + cv.length + 1, 0);
-        const groupSourceRangeEnd   = sourceLines.slice(groupSourceLineStart, groupSourceLineEnd)
-          .reduce((pv: number, cv: string) => pv + cv.length + 1, 0);
+        const sourceRangeEnd   = sourceLines.slice(sourceLineStart, sourceLineEnd)
+          .reduce((pv: number, cv: string) => pv + cv.length + 1, 0) - 1;
 
-        const groupSourceCode = sourceCode.getText().slice(groupSourceRangeStart, groupSourceRangeStart + groupSourceRangeEnd);
+        const groupSourceCode = sourceCode.getText().slice(sourceRangeStart, sourceRangeStart + sourceRangeEnd);
 
         // get range start and end of the target line to fix
         const leftRangeStart = groupSourceCode.indexOf(targetLineCompObj.left);
@@ -103,7 +104,7 @@ export default function verifyAlignment({ sourceCode, context }: { sourceCode: a
         const rightRangeStart = groupSourceCode.indexOf(targetLineCompObj.right);
 
         // tell the fixer to add spaces between the line components
-        const range = [groupSourceRangeStart + leftRangeEnd, groupSourceRangeStart + rightRangeStart];
+        const range = [sourceRangeStart + leftRangeEnd, sourceRangeStart + rightRangeStart];
         return fixer.replaceTextRange(range, SPACE.repeat(spaceNum));
       },
     });
