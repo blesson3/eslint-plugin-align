@@ -57,13 +57,13 @@ export default function verifyAlignment({ sourceCode, context }: { sourceCode: a
     return;
   }
 
-  const lineMatches = lineGroup.map((obj) => obj.line.trim().match(lineMatch));
-  const linesComps = lineMatches.map((x) => x || '')
+  const lineMatches = lineGroup.map((obj) => ({ idx: obj.idx, match: obj.line.trim().match(lineMatch) || [] }));
+  const linesComps = lineMatches
     .map((x) => ({
-      left : x[1].trim(),
-      right: x[2].trim(),
-      line : x[0],
-      idx  : lineGroup.find((data: LineData) => data.line.trim() === x[0])?.idx,
+      left : x.match[1].trim(),
+      right: x.match[2].trim(),
+      line : x.match[0],
+      idx  : x.idx,
     }));
 
   const linesLeftSide          = linesComps.map((x) => x.left);
