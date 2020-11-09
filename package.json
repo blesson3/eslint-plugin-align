@@ -11,11 +11,12 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "         mocha tests --recursive",
-    "compile": "      rm -rf lib && tsc -p .",
+    "compile": "      rm -rf lib; tsc -p .",
     "compile:watch": "tsc -w -p .",
     "postinstall": "  npm run compile"
   },
   "dependencies": {
+    "@types/json-schema": "^7.0.4",
     "@types/node": " ^13.9.5",
     "requireindex": "~1.1.0",
     "typescript": "^3.8.3"
